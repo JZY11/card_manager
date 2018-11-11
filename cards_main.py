@@ -17,7 +17,8 @@ while True:
         # 显示全部
         elif action_str == "2":
             cards_tools.show_all()
-        # 查询名片
+        # 查询名片2
+
         elif action_str == "3":
             cards_tools.search_card()
     # 0 表示的是退出系统
