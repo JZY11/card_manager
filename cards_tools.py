@@ -17,3 +17,7 @@ def new_card():
 def show_all():
     """显示所有名片"""
     print("显示所有名片")
+
+def search_card():
+    """搜索名片"""
+    print("搜索名片")
