@@ -13,13 +13,13 @@ while True:
 
         # 新增名片
         if action_str == "1":
-            pass
+            cards_tools.new_card()
         # 显示全部
         elif action_str == "2":
-            pass
+            cards_tools.show_all()
         # 查询名片
         elif action_str == "3":
-            pass
+            cards_tools.search_card()
     # 0 表示的是退出系统
     elif action_str == "0":
         print("欢迎再次使用【名片管理系统】")
