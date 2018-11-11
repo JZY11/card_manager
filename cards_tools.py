@@ -20,20 +20,24 @@ def new_card():
     print("新增名片")
 
     # 1. 提示用户输入名片的详细信息
-    name = input("请输入姓名：")
-    phone = input("请输入电话：")
-    qq = input("请输入QQ：")
-    email = input("请输入邮箱：")
+    name_str = input("请输入姓名：")
+    phone_str = input("请输入电话：")
+    qq_str = input("请输入QQ：")
+    email_str = input("请输入邮箱：")
 
     # 2. 使用用户输入的信息来建立一个名片字典
-    card_dict = {"name": name,
-                 "phone": phone,
-                 "qq" : qq,
-                 "email" : email}
+    card_dict = {"name_str": name_str,
+                 "phone_str": phone_str,
+                 "qq_str" : qq_str,
+                 "email_str" : email_str}
 
     # 3. 将名片字典添加到列表中
     card_list.append(card_dict)
+
+    print(card_list)
+
     # 4. 提示用户添加成功了
+    print("添加 %s 的名片成功！" %name_str)
 
 def show_all():
     """显示所有名片"""
