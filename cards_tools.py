@@ -26,10 +26,10 @@ def new_card():
     email_str = input("请输入邮箱：")
 
     # 2. 使用用户输入的信息来建立一个名片字典
-    card_dict = {"name_str": name_str,
-                 "phone_str": phone_str,
-                 "qq_str" : qq_str,
-                 "email_str" : email_str}
+    card_dict = {"name": name_str,
+                 "phone": phone_str,
+                 "qq" : qq_str,
+                 "email" : email_str}
 
     # 3. 将名片字典添加到列表中
     card_list.append(card_dict)
@@ -54,7 +54,10 @@ def show_all():
 
     # 遍历名片列表依次输出字典信息
     for card_dict in card_list:
-        print(card_dict)
+        print("%s\t\t%s\t\t%s\t\t%s" % (card_dict["name"],
+                                        card_dict["phone"],
+                                        card_dict["qq"],
+                                        card_dict["email"]))
 
 def search_card():
     """搜索名片"""
