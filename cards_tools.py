@@ -86,7 +86,13 @@ def search_card():
                                             card_dict["phone"],
                                             card_dict["qq"],
                                             card_dict["email"]))
+
+            # TODO 针对找到的名片记录执行修改和删除的操作
+            deal_card(card_dict)
             break
 
     else:
         print("抱歉，没有找到 %s" % find_name)
+
+def deal_card(find_card):
+    print(find_card)
