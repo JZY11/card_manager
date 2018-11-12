@@ -83,8 +83,8 @@ def search_card():
             print("姓名\t\t电话\t\tQQ\t\t邮箱\t\t")
             print("=" * 50)
             print("%s\t\t%s\t\t%s\t\t%s" % (card_dict["name"],
-                                            card_dict["phone"],
                                             card_dict["qq"],
+                                            card_dict["phone"],
                                             card_dict["email"]))
 
             # TODO 针对找到的名片记录执行修改和删除的操作
@@ -94,5 +94,18 @@ def search_card():
     else:
         print("抱歉，没有找到 %s" % find_name)
 
-def deal_card(find_card):
-    print(find_card)
+def deal_card(find_dict):
+    # print(find_dict)
+
+    action_str = input("请选择要执行的操作 "
+                       "[1] 修改 [2] 删除 [0] 返回上级菜单")
+    if action_str == "1":
+
+        find_dict["name"] = input("姓名：")
+        find_dict["phone"] = input("电话：")
+        find_dict["qq"] = input("QQ：")
+        find_dict["email"] = input("邮箱：")
+        print("修改名片成功！")
+    elif action_str == "2":
+        card_list.remove(find_dict)
+        print("删除名片成功！")
