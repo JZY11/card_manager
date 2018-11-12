@@ -50,6 +50,8 @@ def show_all():
 
         # return这个关键字可以返回一个函数的执行结果
         # 下方的代码不会被执行
+        # 如果return后面没有任何的东西，表示会返回到调用函数的位置
+        # 并且不返回任何的结果
         return
 
     # 打印表头
@@ -71,3 +73,15 @@ def search_card():
     """搜索名片"""
     print("-" * 50)
     print("搜索名片")
+
+    # 1. 提示用户要搜索的姓名
+    find_name = input("请输入要搜索的姓名：")
+
+    # 2. 遍历名片列表，查询要搜索的姓名，如果没有找到需要提示用户
+    for card_dict in card_list:
+        if card_dict["name"] == find_name:
+            print("找到了")
+            break
+
+    else:
+        print("抱歉，没有找到 %s" % find_name)
