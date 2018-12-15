@@ -39,4 +39,33 @@ def new_card():
     # 4. 提示用户添加成功了
     print("添加 %s 的名片成功！" %name_str)
 
+def show_all():
+    """显示所有名片"""
+    print("-" * 50)
+    print("显示所有名片")
+
+    # 判断是否存在名片记录，如果没有，提示用户并且返回
+    if len(card_list) == 0:
+        print("当前没有任何的名片记录，请使用新增功能来添加名片！")
+
+        # return这个关键字可以返回一个函数的执行结果
+        # 下方的代码不会被执行
+        # 如果return后面没有任何的东西，表示会返回到调用函数的位置
+        # 并且不返回任何的结果
+        return
+
+    # 打印表头
+    for name in ["姓名", "电话", "QQ", "邮箱"]:
+        print(name, end="\t\t")
+    print("")
+
+    # 打印分割线
+    print("=" * 50)
+
+    # 遍历名片列表依次输出字典信息
+    for card_dict in card_list:
+        print("%s\t\t%s\t\t%s\t\t%s" % (card_dict["name"],
+                                        card_dict["phone"],
+                                        card_dict["qq"],
+                                        card_dict["email"]))
 
