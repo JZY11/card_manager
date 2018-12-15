@@ -31,4 +31,12 @@ def new_card():
                  "qq" : qq_str,
                  "email" : email_str}
 
+    # 3. 将名片字典添加到列表中
+    card_list.append(card_dict)
+
+    print(card_list)
+
+    # 4. 提示用户添加成功了
+    print("添加 %s 的名片成功！" %name_str)
+
 
