@@ -12,7 +12,7 @@ def main():
     destaddr = ("192.168.0.4", 8080)  # 对方的ip和端口  要写在一个元组里
     #udp_socket.sendto(b"hahaha",destaddr)
 
-    udp_socket.sendto(send_data.encode("utf-8"), destaddr)
+    udp_socket.sendto(send_data.encode("utf-8"), destaddr) # encode 编码
     # 关闭套接字
     udp_socket.close()
 
