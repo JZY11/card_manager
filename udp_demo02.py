@@ -1,5 +1,6 @@
 import socket
 
+"""从键盘接收数据然后发送，注意从键盘接收的是字符串数据，但是发送的数据只可是字节数据，所以要用到encode编码"""
 def main():
     """创建一个udp套接字"""
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
