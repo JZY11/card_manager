@@ -28,8 +28,22 @@ def main():
 
     # 循环来处理事情
     while True:
-        send_message(udp_socket)
+        print("-=-=-=-=-XXX聊天器=-=-=-=-=-=")
+        print("1:发送消息")
+        print("2:接收消息")
+        print("3:退出系统")
+        op = input("请输入功能：")
 
+        if op == "1":
+            # 发送
+            send_message(udp_socket)
+        elif op == "2":
+            # 接收并显示
+            receive_message(udp_socket)
+        elif op == "0":
+            break
+        else:
+            print("输入有误，请重新输入！")
 
 
 if __name__ == "__main__":
