@@ -21,6 +21,7 @@ def main():
         #udp_socket.sendto(b"hahaha",destaddr)
         udp_socket.sendto(send_data.encode("utf-8"), destaddr) # encode 编码
 
+        udp_socket.recvfrom(1024) # 接收数据，最大为1024个字节
     # 关闭套接字
     udp_socket.close()
 
