@@ -21,8 +21,14 @@ def main():
             # 5.接受客户端发送过来的请求
             receive_data = new_client_socket.recv(1024)  # 接受1024个字节  返回不是元组，是一个普通数据
 
-            # 6.回复一部分数据给客户端
-            tcp_server_socket.send("hahaha")
+            # 如果recv解堵塞，那么有两种方式：
+            # 1.客户端发送过来数据
+            # 2.客户端调用close导致  这里recv解堵塞
+            if receive_data:
+                # 6.回复一部分数据给客户端
+                tcp_server_socket.send("hahaha")
+            else:
+               break
 
         # 7.关闭套接字
         new_client_socket.close()
