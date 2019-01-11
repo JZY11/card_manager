@@ -40,5 +40,5 @@ def main():
         new_client_socket.close()
     tcp_server_socket.close()
 
-if __name__ == "__mian__":
+if __name__ == "__main__":
     main()
