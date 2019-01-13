@@ -7,6 +7,7 @@ def test1():
         print("-------test1------%d" % i)
         time.sleep(1)
 
+    # 如果创建Thread时执行的函数运行结束，那么就意味着这个子线程就结束了
 
 def test2():
     for i in range(10):
@@ -23,6 +24,8 @@ def main():
 
     while True:
         print(threading.enumerate())
+        if len(threading.enumerate()) <= 1: # 判断条件是线程数小于等于1(即只有一个主线程时循环结束)
+            break
         time.sleep(1)
 
 
