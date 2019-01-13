@@ -17,9 +17,9 @@ def dance():
 
 
 def main():
-    t1 = threading.Thread(target=sing)
+    t1 = threading.Thread(target=sing)      # Thread 是一个类名  而：Thread()就创建了一个对象
     t2 = threading.Thread(target=dance)
-    t1.start()
+    t1.start()  # 启动线程，即让线程开始执行
     t2.start()
 
 # 所谓多任务就是当一个程序运行起来后，还可以既做这个又做那个
