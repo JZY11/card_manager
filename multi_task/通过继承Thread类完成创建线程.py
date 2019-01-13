@@ -14,5 +14,5 @@ class MyThread(threading.Thread): # 类MyThread继承Thread类
 
 
 if __name__ == '__main':
-    t = MyThread() # 创建一个对象
-    t.start()
+    t = MyThread() # 创建一个对象就意味着以后只能创建一个线程，一个线程同一时刻只能执行一个函数
+    t.start()   # 此种情况在调用start(),只会执行run()方法
