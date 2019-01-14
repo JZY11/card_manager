@@ -1,6 +1,6 @@
 import multiprocessing
 
-def  download_from_web(q):
+def download_from_web(q):
     """下载数据"""
     # 模拟从网上下载的数据
     data = [11, 22, 33, 44]
@@ -22,7 +22,9 @@ def analysis_data(q):
 
         if q.empty():
             break
+
     # 模拟数据处理
+    print(waitting_analysis_data)
 
 
 def  main():
@@ -31,10 +33,10 @@ def  main():
 
     # 2. 创建多个进程，将队列的引用当做实参传递到里面
 
-    p1 = multiprocessing.Process(target=download_from_web, args=(q,))
+    p1 = multiprocessing.Process(target=download_from_web, args=(q,))   # 创建一个进程对象
     p2 = multiprocessing.Process(target=analysis_data, args=(q,))
 
-    p1.start()
+    p1.start()  # 启动一个进程
     p2.start()
 
 
