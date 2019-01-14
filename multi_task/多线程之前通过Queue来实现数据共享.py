@@ -14,9 +14,14 @@ def  download_from_web(q):
 
 def analysis_data(q):
     """数据处理"""
+    waitting_analysis_data = list()   # 创建了一个空对象  相当于 waitting = []
     # 从队列中获取数据
-    q.get()
+    while True:
+        data = q.get()
+        waitting_analysis_data.append(data)
 
+        if q.empty():
+            break
     # 模拟数据处理
 
 
