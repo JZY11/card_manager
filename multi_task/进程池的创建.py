@@ -4,7 +4,7 @@ import time, os, random
 
 def worker(msg):
     t_start = time.time()
-    print("%s开始执行，进程号为%d" % (msg, os.getPid()))
+    print("%s开始执行，进程号为%d" % (msg, os.getpid()))
 
     # random.random() 随机生成 0 - 1 之间的浮点数
     time.sleep(random.random()*2)
