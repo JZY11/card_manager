@@ -24,6 +24,8 @@ def creat_num(all_num):
 
 # 如果在调用creat_num的时候，发现这个函数有 yield ，那么此时这个就不再是函数，而是创建一个生成器的对象
 obj = creat_num(10)
+ret = next(obj)     # next函数返回的就是 yield 后的值
+print(ret)
 
 for num in obj:
     print(num)
