@@ -43,9 +43,15 @@ def main():
     po.close()
     # po.join()
 
+    all_file_num = len(file_names)  # 测一下所有文件的个数
+    copy_complete_num = 0
     while True:
         file_name = q.get()
         print("已经完成copy：%s" % file_name)
+        copy_complete_num += 1
+
+        if copy_complete_num >= all_file_num:
+            break
 
 if __name__ == "__main__":
     main()
