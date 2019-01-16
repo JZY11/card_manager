@@ -5,8 +5,13 @@ def copy_file(file_name, old_folder_name, new_folder_name):
     """完成文件的复制"""
     print("--- 模拟copy文件 %s---" % file_name)
     old_f = open(old_folder_name + "/" + file_name, "rb")     # 打开这个文件夹下的某一个文件
-    print(old_f.read())
+    content = old_f.read()
     old_f.close()
+
+    new_f = open(new_folder_name + "/" + file_name, "wb")
+    new_f.write(content)
+    new_f.close()
+
 
 def main():
     # 1. 获取要copy的文件夹的名字
