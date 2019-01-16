@@ -29,7 +29,7 @@ class ClassIterator(object):
             self.current_num += 1
             return ret
         else:
-            raise StopIteration          # 如何告诉迭代器已经将数据取完了呢/
+            raise StopIteration          # 如何告诉迭代器已经将数据取完了呢?  - 让其抛出一个异常后程序就停止了
 
 
 classmate = Classmate() # 定义一个实例对象
