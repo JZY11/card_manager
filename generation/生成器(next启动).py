@@ -6,12 +6,14 @@ def create_num(all_num):
         a, b = b, a + b
         current_num += 1
 
+    return "ok......."
 
-obj2 = create_num(20)
+obj2 = create_num(10)
 
 while True:
     try:
-        ret = next(obj2)
+        ret = next(obj2)    # 通过next 来启动生成器来生成下一个值
         print(ret)
     except Exception as ret:
+        print(ret.value)    # ret.value 是生成器的模板 create_num 的返回值: "ok......."
         break
