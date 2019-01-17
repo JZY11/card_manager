@@ -23,7 +23,7 @@ def creat_num(all_num):
         current_num += 1
 
 # 如果在调用creat_num的时候，发现这个函数有 yield ，那么此时这个就不再是函数，而是创建一个生成器的对象
-obj = creat_num(10)
+obj = creat_num(10) # 只要函数creat_num 中含有 yield 那么 obj就是一个生成器对象
 ret = next(obj)     # next函数返回的就是 yield 后的值
 print(ret)
 
