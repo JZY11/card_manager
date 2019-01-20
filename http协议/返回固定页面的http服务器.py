@@ -1,4 +1,5 @@
 import socket
+import re
 
 
 def service_client(new_socket):
@@ -8,8 +9,13 @@ def service_client(new_socket):
     # GET / HTTP/1.1
     #......
 
-    request = new_socket.recv(1024)
-    print(request)
+    request = new_socket.recv(1024).decode("utf-8") # 服务器对接收到的客户端发送过来的请求进行解码
+    # print(request)
+    request_lines = request.splitlines()
+    print(">" * 20)
+    print(request_lines)
+
+    file_name = re.match(r"[^/]+/[^ ]*", request_lines[0])   # r是为了原生字符串不用转义
 
     # 2. 返回http格式的数据给浏览器
     # 2.1 准备好发送给浏览器的数据 ---  header
