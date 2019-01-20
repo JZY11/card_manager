@@ -17,9 +17,13 @@ def service_client(new_socket):
     response += "\r\n"
 
     # 2.2 准备好发送给浏览器的数据 ---  body
-    response += "<h1>hahaha</h1>"
+    f = open("./html/index.html", "rb")
+    html_content = f.read()
+    f.close()
 
-    new_socket.send(response.encode("utf-8"))
+    new_socket.send(response.encode("utf-8")) # 发送头部信息
+    new_socket.send(html_content)   # 发送body信息
+
 
     # 关闭套接字
     new_socket.close()
