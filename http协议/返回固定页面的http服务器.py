@@ -15,21 +15,27 @@ def service_client(new_socket):
     print(">" * 20)
     print(request_lines)
 
-    file_name = re.match(r"[^/]+/[^ ]*", request_lines[0])   # r是为了原生字符串不用转义
-
-    # 2. 返回http格式的数据给浏览器
-    # 2.1 准备好发送给浏览器的数据 ---  header
-    response = "HTTP/1.1 200 0K\r\n"
-    response += "\r\n"
+    ret = re.match(r"[^/]+/[^ ]*", request_lines[0])   # r是为了原生字符串不用转义
+    if ret:
+        file_name = ret.group(1)
 
     # 2.2 准备好发送给浏览器的数据 ---  body
-    f = open("./html/index.html", "rb")
-    html_content = f.read()
-    f.close()
+    try:
+        f = open("./html/index.html", "rb")
 
-    new_socket.send(response.encode("utf-8")) # 发送头部信息
-    new_socket.send(html_content)   # 发送body信息
-
+        html_content = f.read()
+        f.close()
+        # 2. 返回http格式的数据给浏览器
+        # 2.1 准备好发送给浏览器的数据 ---  header
+        response = "HTTP/1.1 200 0K\r\n"
+        response += "\r\n"
+        new_socket.send(response.encode("utf-8"))  # 发送头部信息
+        new_socket.send(html_content)  # 发送body信息
+    except:
+        response = "HTTP/1.1 404 NOT FOUND\r\n"
+        response += "\r\n"
+        response += "----- file not found --- "
+        new_socket.send(response.encode("utf-8"))
 
     # 关闭套接字
     new_socket.close()
