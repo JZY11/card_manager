@@ -76,8 +76,8 @@ def main():
         except Exception as ret:
             pass
         else:
-            new_socket.setblocking(False)
-            client_socket_list.append(new_socket)
+            new_socket.setblocking(False)  # 设置新生成的套接字为非堵塞的方式
+            client_socket_list.append(new_socket)  #  有客户段到来后就将该客户端的套接字对象放入到list对象集合中
 
         for client_socket in client_socket_list:
             try:

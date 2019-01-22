@@ -70,9 +70,9 @@ def main():
     epl = select.epoll()
 
     # 将监听套接字对应的fd注册到epoll中
-    epl.register(tcp_server_socket.fileno(), select.EPOLLIN|select.EPOLLET)  # 第二个参数目的是为了：收到数据的时候通知你也就是检测第一参数(监听套接字)是否有输入，若有输入则表明：有客户端开始连接该服务器啦
+    epl.register(tcp_server_socket.fileno(), select.EPOLLIN)  # 第二个参数目的是为了：收到数据的时候通知你也就是检测第一参数(监听套接字)是否有输入，若有输入则表明：有客户端开始连接该服务器啦
 
-    client_socket_list = list()
+    fd_event_dict = dict()
     while True:
 
         fd_event_list = epl.poll()  # 默认是堵塞的，直到os检测到有数据到来通过事件通知方式告诉这个程序，此时才会解堵塞
@@ -82,20 +82,17 @@ def main():
             # 4. 等待新客户端的链接
             if fd == tcp_server_socket.fileno():
                 new_socket, client_address = tcp_server_socket.accept()
-                epl.register(new_socket.fileno(), select.EPOLLIN | select.EPOLLET)
-
-        for client_socket in client_socket_list:
-            try:
-                recv_data = client_socket.recv(1024).decode("utf-8")
-            except Exception as ret:
-                pass
-            else:   #  意味着有数据到来  证明已经解堵塞了
+                epl.register(new_socket.fileno(), select.EPOLLIN)
+                fd_event_dict[new_socket.fileno()] = new_socket
+            elif event == select.EPOLLIN:
+                # 判断已经连接的客户端是否有数据发送过来
+                recv_data = fd_event_dict[fd].recv(1024).decode("utf-8")
                 if recv_data:
-                    service_client(client_socket, recv_data)
+                    service_client(fd_event_dict[fd], recv_data)
                 else:   # 如果recv_data 是空的  则表明浏览器客户端已经关闭即4次挥手开始
-                    client_socket.close()
-                    client_socket_list.remove(client_socket)
-
+                    fd_event_dict[fd].close()
+                    epl.unregister(fd)  # 从epoll对象中撤销该套接字对应的fd
+                    del fd_event_dict[fd] # 如果recv_data为空则浏览器已经关闭，我们需要将字典对象中该fd对应着的套接字对象删除
 
         # 5. 为这个客户端服务
         # service_client(new_socket)
