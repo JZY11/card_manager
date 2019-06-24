@@ -67,3 +67,25 @@ class DFAFilter:
         self.delimit = '\x00'
 
     def add(self,keyword):
+        if not isinstance(keyword,unicode):
+            keyword = keyword.decode('utf-8')
+        keyword = keyword.lower()
+        chars = keyword.strip()
+        if not chars:
+            return
+        level = self.keywords_chains
+        for i in range(len(chars)):
+            if chars[i] in level:
+                level = level[chars[i]]
+            else:
+                if not isinstance(level,dict):
+                    break
+                for j in range(i,len(chars)):
+                    level[chars[j]] = {}
+                    last_level,last_char = level,chars[j]
+                    level = level[chars[j]]
+                last_level[last_char] = {self.delimit:0}
+                break
+
+        if i == len(chars) - 1:
+          level[self.delimit] = 0
