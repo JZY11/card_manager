@@ -61,3 +61,9 @@ class BSFilter:
         return message
 
 
+class DFAFilter:
+    def __init__(self):
+        self.keywords_chains = {}
+        self.delimit = '\x00'
+
+    def add(self,keyword):
