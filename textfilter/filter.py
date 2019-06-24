@@ -42,4 +42,22 @@ class BSFilter:
                         self.bsdict[char].add(index)
 
 
+    def parse(self,path):
+        with open(path, "r") as f:
+            for keyword in f:
+                self.add(keyword.strip())
+
+    def filter(self,message,repl="*"):
+        if not isinstance(message,unicode):
+            message = message.decode('utf-8')
+        message = message.lower()
+        for word in message.split():
+            if self.pat_en.search(word):
+                message = message.replace(self.keywords[index],repl)
+            else:
+                for char in word:
+                    for index in self.bsdict[char]:
+                        message = message.replace(self.keywords[index],repl)
+        return message
+
 
