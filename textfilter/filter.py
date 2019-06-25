@@ -123,3 +123,20 @@ class DFAFilter:
             start += 1
         return ''.join(ret)
 
+
+    def test_first_character(self):
+        gfw = DFAFilter()
+        gfw.add("1989年")
+        assert gfw.filter("1989","*") == "1989"
+
+    if __name__ == "__main__":
+        # gfw = NaiveFilter()
+        # gfw = BSFilter()
+        gfw = DFAFilter()
+        gfw.parse("keywords")
+        import time
+        t = time.time()
+        print (gfw.filter("法轮功 我操操操", "*"))
+
+        test_first_character()
+
