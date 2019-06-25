@@ -109,5 +109,17 @@ class DFAFilter:
             for char in message[start:]:
                 if char in level:
                     step_ins += 1
-                if self.delimit not in level[char]:
-                    level = level[char]
+                    if self.delimit not in level[char]:
+                        level = level[char]
+                    else:
+                        ret.append(repl * step_ins)
+                        start += step_ins - 1
+                        break
+                else:
+                    ret.append(message[start])
+                    break
+            else:
+                ret.append(message[start])
+            start += 1
+        return ''.join(ret)
+
