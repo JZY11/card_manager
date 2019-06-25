@@ -89,3 +89,25 @@ class DFAFilter:
 
         if i == len(chars) - 1:
           level[self.delimit] = 0
+
+
+    def parse(self,path):
+        with open(path) as f:
+            for keyword in f:
+                self.add(keyword.strip())
+
+    def filter(self,message,repl='*'):
+        if not isinstance(message,unicode):
+            message = message.decode('utf-8')
+        message = message.lower()
+
+        ret = []
+        start = 0
+        while start < len(message):
+            level = self.keywords_chains
+            step_ins = 0
+            for char in message[start:]:
+                if char in level:
+                    step_ins += 1
+                if self.delimit not in level[char]:
+                    level = level[char]
